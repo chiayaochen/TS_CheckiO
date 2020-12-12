@@ -6,12 +6,13 @@ function threeWords(t) {
     t = t.split(' ');
     // 一個一個去檢查是否是數字
     for (var i = 0; i < t.length - 2; i++) {
+        // 驗證是否三次都不是數字
+        var ans = true;
         for (var j = 0; j < 3; j++) {
-            /* if (!()isFinite(t[i+j])) {
-                continue;
-            }
-            這邊還沒搞定 
-            */
+            ans = ans && (!(isFinite(Number(t[i + j]))))
+        }
+        if (ans === true) {
+            return true;
         }
     }
     return false;
