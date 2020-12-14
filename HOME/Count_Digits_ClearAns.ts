@@ -1,17 +1,8 @@
 // 引入 assert 函式
 const assert = require('assert');
 
-// 修改自前面的 Sum_Numbers
-var countDigits = t => t
-    .split('')                      // 將字串切割成一個一個字母，得到陣列
-    .filter(tt => /\d+/.test(tt))   // 將數字用正規表達式篩選出來
-    .reduce(                        // 這邊的引數會傳入累加器與前面傳來的陣列
-        function (sum, obj) {
-            for (var i in obj) {
-                sum++;
-            }
-            return sum;
-        }, 0);
+// 利用正規表達式先把非數字去掉，再計算字串長度
+var countDigits = t => t.replace(/\D*/g,'').length;
 
 // These "asserts" are used for self-checking
 assert.equal(countDigits('hi'), 0);
