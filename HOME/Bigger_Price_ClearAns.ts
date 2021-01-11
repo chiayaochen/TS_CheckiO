@@ -13,14 +13,13 @@ function biggerPrice(limit: number, data: Stock[]): Stock[] {
     // your code here
     // sort 的用法是在其內擺一個排序函式
     // 而這個排序函式預設的參數是 a 與 b
-    // 如果排序函式回傳的結果是 -1 則把 a 放在 b 前面的位置
-    // 如果排序函式回傳的結果是  1 則把 a 放在 b 後面的位置
-    data.sort((a, b) => a.price > b.price ? -1: 1);
+    // 如果排序函式回傳的結果是 負數 則把 a 放在 b 前面的位置
+    // 如果排序函式回傳的結果是 正數 則把 a 放在 b 後面的位置
+    data.sort((a, b) => b['price'] - a['price'] );
     // slice 方法 會回傳 但不會更改原本的陣列
     // slice 的第一個參數是開始的 index
     // slice 的第二個參數是結束的 index 但回傳不含這處
-    var answer = data.slice(0, limit);
-    return answer;
+    return data.slice(0, limit);
 }
 
 console.log('Example:')
