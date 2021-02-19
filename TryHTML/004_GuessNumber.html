@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            練習寫個猜數字遊戲
+        </title>
+    </head>
+    <body>
+        <h2>就只是個新手寫的猜數字遊戲</h2>
+        <hr>
+        <script>
+            // 設定要使用的變數
+            var target = 9487; 
+            var inputs = 0;
+            var counts = 0;
+            // 來個無窮迴圈
+            while (true) {
+                // 跳出一個可以輸入的對話框
+                // 對話框按下確定會傳回 inputs 當作預設值
+                // 對話框按下取消則會傳回 null
+                inputs = window.prompt("請輸入你猜的數字", inputs);
+                counts += 1;
+                // 如何離開迴圈呢
+                if ((inputs == null)||(inputs == target)) {
+                    break;
+                }
+                // 判斷大小
+                if (inputs > target) {
+                    alert("您輸入的是" + inputs + "，這太大啦！");
+                    continue;
+                }
+                else if (inputs < target) {
+                    alert("您輸入的是" + inputs + "，這太小啦！");
+                    continue;
+                }
+            }
+            // 前面是在練習 break 與 continue
+            // 接著練習印到網頁上
+            if (inputs == null) {
+                document.write("不猜了！答案是" + target + "<br/>");
+            } else {
+                document.write("猜對了！答案是" + target + "<br/>");
+                document.write("總共猜了" + counts + "次<br/>");
+            }
+        </script>
+    </body>
+</html>

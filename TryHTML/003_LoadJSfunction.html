@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            這邊放的是網頁標題
+        </title>
+        <script>
+            // 函數與事件處理習慣先放在 Head 區塊先讀
+            function showMSG(){
+                alert("這是 Head 區塊的 JS 程式碼");
+            };
+        </script>    
+    </head>
+    <body onload="showMSG()">
+        <!-- 呼叫函數時習慣放在 body 區塊 -->
+        <!-- onload 事件用來設計當網頁載入完成後， -->
+        <!-- 觸發特定的 JS 函式去執行特定的工作 -->
+        <h2>這個文字出現在呼叫函數之後</h2>
+        <hr>
+        <!-- hr 指的是水平分隔線 -->
+    </body>
+</html>
