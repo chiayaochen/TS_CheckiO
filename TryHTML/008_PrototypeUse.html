@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>利用Prototype來修改所有物件</title>
+    <script>
+        // 使用建構函數自訂物件
+        function circle(r, c) {
+            this.radius = r;
+            this.colors = c;
+            // 尚未設定的物件方法
+            this.info = ShowCircle;
+        }
+        // 這邊來設定前面的物件方法
+        function ShowCircle() {
+            document.write("這個圓的半徑是: " + this.radius + "<br>");
+            document.write("這個圓的顏色是: " + this.colors + "<br>");
+            // 這邊使用了尚未定義的物件屬性
+            document.write("這個圓的圓周率是:" + this.PI + "<br>");
+            document.write("<hr>");
+        }
+    </script>
+</head>
+
+<body>
+    <h2>這邊練習用Prototype的方法來更改與新增所有物件的同一屬性</h2>
+    <hr>
+    <script>
+        // 建立新的自訂物件
+        var cir1 = new circle(25, "紅色");
+        var cir2 = new circle(70, "黃色");
+        // 新增 Prototype 物件的屬性
+        circle.prototype.PI = 3.1415926;
+        // 然後來看看結果如何
+        cir1.info();
+        cir2.info();
+    </script>
+</body>
+
+</html>

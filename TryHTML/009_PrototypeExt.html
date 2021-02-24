@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>練習擴充JS內建物件的方法</title>
+    <script>
+        // 以下是想要擴充的物件方法
+        // 字元反向
+        function ReverseStr() {
+            for (var i = (this.length - 1); i >= 0; i--) {
+                // 利用 String.charAt()方法顯示獨立字元
+                document.write(this.charAt(i));
+            }
+            document.write("<br>");
+            document.write("<hr>");
+        }
+        // 取出偶數字元
+        function EvenStr() {
+            var output = "";
+            for (var i = 0; i < this.length; i += 2) {
+                output += this.charAt(i);
+            }
+            return output;
+        }
+        // 接著利用 Prototype 來擴充
+        String.prototype.reverse = ReverseStr;
+        String.prototype.even = EvenStr;
+    </script>
+</head>
+
+<body>
+    <h2>以下是兩種擴充內建物件方法的方式</h2>
+    <hr>
+    <script>
+        // 試著輸入看看
+        var msg = window.prompt("請輸入要運算的字串");
+        // 顯示反向字元
+        document.write("第一種方式以反向字元為例<br>");
+        msg.reverse();
+        // 顯示偶數字元
+        document.write("第二種方式以偶數字元為例<br>");
+        document.write(msg.even() + "<br>");
+        document.write("<hr>");
+    </script>
+</body>
+
+</html>
