@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8">
+        <title>練習弄個九九乘法表</title>
+    </head>
+    <body>
+        <h2>以下是用 JS 輸出的九九乘法表</h2>
+        <hr>
+        <script>
+            // 下面會學到 html 的基本表格語法
+            // 使用 <table> 用來包著整個表格的結構和內容
+            // 每個 <tr> (table row) 定義表格有幾個橫列
+            // 橫列裡有 <td> (table data) 依序放實際單元格的資料
+            // 下面開始 JS 的程式碼
+            // 表格開始
+            document.write("<table border = 1>");
+            // 先製作表格的第一列的第一格
+            document.write("<tr><td width = 80></td>");
+            // 然後是第一列的標題列
+            for (var i = 1; i <= 9; i++) {
+                document.write("<td align = 'center' width = 80>" + i + "</td>");
+            }
+            // 結束第一列的標題列
+            document.write("</td>");
+            // 開始寫接下來的每一個橫列
+            for (var i = 1; i <= 9; i++){
+                // 每一列的開頭第一格
+                document.write("<tr><td align = 'center' width = 80>" + i + "</td>");
+                // 然後是每一個乘法
+                for (var j = 1; j <= 9; j++) {
+                    document.write("<td align = 'center'>" + i + " X " + j + " = " + (i*j) + "</td>");
+                }
+                // 每一列的結束
+                document.write("</tr>");
+            }
+            // 表格結束
+            document.write("</table>");
+        </script>
+    </body>
+</html>

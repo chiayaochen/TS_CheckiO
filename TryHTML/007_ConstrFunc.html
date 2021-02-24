@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>物件的建構函數的練習</title>
+    <script>
+        // 要設定的部分習慣放在 head
+        // 使用建構函數自訂一種物件
+        function MeiShi(n, a, p, e) {
+            this.name = n;
+            this.age = a;
+            this.phone = p;
+            this.email = e;
+            // 額外設定物件方法
+            this.PrintOut = PrintCard;
+        }
+        // 然後把物件方法的內容寫出來
+        function PrintCard() {
+            document.write("姓名: " + this.name + "<br>");
+            document.write("年齡: " + this.age + "<br>");
+            document.write("電話: " + this.phone + "<br>");
+            document.write("郵件: " + this.email + "<br>");
+            document.write("<hr>");
+        }
+    </script>
+</head>
+
+<body>
+    <h2>自訂物件的練習</h2>
+    <hr>
+    <script>
+        // 建立兩個自訂物件並且讓他們印出來
+        var card_1 = new MeiShi("AAA", 18, "01-11111111", "AAA@abc.com");
+        var card_2 = new MeiShi("BBB", 20, "02-22222222", "BBB@def.com");
+        card_1.PrintOut();
+        card_2.PrintOut();
+    </script>
+</body>
+
+</html>

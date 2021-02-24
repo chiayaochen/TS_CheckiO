@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8">
+        <title>Escape函數練習</title>
+    </head>
+    <body>
+        <h2>Escape函數的練習</h2>
+        <hr>
+        <script>
+            // 設定變數
+            var inputs = "預設字串";
+            // 設定一個無限迴圈
+            while (true) {
+                // 輸入要轉換的字串
+                inputs = window.prompt("請輸入要轉換的字串", inputs);
+                // 如果按取消就繼續問
+                if (inputs == null) {
+                    continue;
+                } else {
+                    var strURL = escape(inputs);
+                    var strOri = unescape(strURL);
+                    document.write("原始字串為: " + inputs + "<br>");
+                    document.write("轉換字串為: " + strURL + "<br>");
+                    document.write("還原字串為: " + strOri + "<br>");
+                    break;
+                }
+            }
+        </script>
+    </body>
+</html>
