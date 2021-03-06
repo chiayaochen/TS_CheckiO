@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>函式本身其實也是一種物件</title>
+</head>
+
+<body>
+    <h2>函式本身其實也是一種物件，這邊練習用建立物件的方式來建立函式</h2>
+    <hr>
+    <script>
+        // 常用的函數定義方式有
+        // 函數宣告：function 名稱([參數]) { ... }
+        // 函數表達式：變數名稱 = function([參數]){ ... };
+        // 把函式當作物件也可以拿來定義函式
+        // 透過 new Function() 建立函式
+        // 括號內放的字串是原本每一行要執行的程式碼
+        // 當然這樣做執行速度會比較慢
+        // 因為必須先把字串輸入到函式物件裡面
+        // 所以常規來說不太會這樣使用
+        var FuncAsObj = new Function("x", "y", "z", "return x*y*z");
+        document.write("執行結果:" + FuncAsObj(2, 3, 5) + "<br>");
+    </script>
+</body>
+
+</html>
