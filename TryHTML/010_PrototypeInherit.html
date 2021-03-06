@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>練習物件繼承和With區塊</title>
+    <script>
+        // 建構一個基礎物件
+        function position(x, y, place) {
+            this.x = x;
+            this.y = y;
+            this.place = place;
+        }
+        // 建構一個子物件
+        function circle(r) {
+            this.r = r;
+            // 下面是物件的方法
+            this.info = showCirInfo;
+            // 物件的方法可以寫在物件建構函式的外面
+            // 也可以寫在建構函式的裡面
+            function showCirInfo() {
+                var area = 3.1415926 * this.r * this.r;
+                document.write("半徑: " + this.r + "<br>");
+                document.write("X座標: " + this.x + "<br>");
+                document.write("Y座標: " + this.y + "<br>");
+                document.write("面積: " + area + "<br>");
+                document.write("地點: " + this.place + "<br>");
+            }
+        }
+        // 接著使用Prototype把子物件去繼承基礎物件
+        // 記得加括號
+        circle.prototype = new position();
+    </script>
+</head>
+
+<body>
+    <h2>學習使用Prototype做物件繼承與使用With程式區塊</h2>
+    <hr>
+    <script>
+        // 新增一個物件實例
+        var cirObj_1 = new circle(123);
+        // 在 with 程式區塊裡面 就不需要一直寫物件名稱
+        // 可以直接指定物件屬性與內容
+        with(cirObj_1){
+            x = 567;
+            y =  89;
+            place = "In the sky.";
+        }
+        // 接著可以試圖在 with 區塊外 執行看看物件方法
+        cirObj_1.info();
+    </script>
+</body>
+
+</html>
