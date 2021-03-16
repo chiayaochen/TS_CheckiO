@@ -1,8 +1,48 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="utf-8">
     <title>練習取得系統時間日期</title>
 </head>
-<body></body>
+
+<body>
+    <h2>練習顯示系統時間日期</h2>
+    <hr>
+    <script>
+        // 顯示結果存放在這邊
+        var output = "現在時間為西元";
+        // 使用一個 Array 用於轉換星期
+        var wks = new Array(7);
+        // 寫入 Ａrray 內容
+        wks[0] = "星期日";
+        wks[1] = "星期一";
+        wks[2] = "星期二";
+        wks[3] = "星期三";
+        wks[4] = "星期四";
+        wks[5] = "星期五";
+        wks[6] = "星期六";
+        // 建立一個計算耗費時間的物件
+        var Twaste = new Date();
+        var Tstart = 0;
+        var Tend = 0;
+        Tstart = new Date().getTime();
+        // 建立一個取得現在時間的物件
+        var Tnow = new Date();
+        // 將字串累加入結果
+        output += Tnow.getFullYear() + "年";
+        output += (Tnow.getMonth() + 1) + "月";
+        output += Tnow.getDate() + "日";
+        output += Tnow.getHours() + "時";
+        output += Tnow.getMinutes() + "分";
+        output += Tnow.getSeconds() + "秒";
+        output += wks[Tnow.getDay()];
+        document.write(output + "<br>");
+        // 顯示耗費時間
+        Tend = new Date().getTime();
+        var Tspend = (Tend - Tstart) / 1000;
+        document.write("這個顯示一共耗費了" + Tspend + "秒" + "<br>");
+    </script>
+</body>
+
 </html>

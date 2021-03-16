@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>練習內建的數學物件</title>
+</head>
+
+<body>
+    <h2>練習內建的數學物件</h2>
+    <h6>Math物件的特殊點是不需要 new 建立新物件，可以用 Math 關鍵字直接使用</h6>
+    <hr>
+    <script>
+        // 下列取得 Math 的所有屬性名稱
+        var mathNames = Object.getOwnPropertyNames(Math);
+        for (i in mathNames) {
+            // 如果屬性是Number則顯示出來
+            if (typeof Math[mathNames[i]] == "number") {
+                document.write("在 Math." + mathNames[i] + " 的值是 " + Math[mathNames[i]] + "<br>");
+            }
+        }
+    </script>
+</body>
+
+</html>
