@@ -13,12 +13,16 @@
     <script>
         // 下列取得 Math 的所有屬性名稱
         var mathNames = Object.getOwnPropertyNames(Math);
+        document.write("<table border = 0>");
         for (i in mathNames) {
             // 如果屬性是Number則顯示出來
             if (typeof Math[mathNames[i]] == "number") {
-                document.write("在 Math." + mathNames[i] + " 的值是 " + Math[mathNames[i]] + "<br>");
+                document.write("<tr>");
+                document.write("<td>在</td><td>Math." + mathNames[i] + "</td><td>的值是</td><td>" + Math[mathNames[i]] + "</td>");
+                document.write("</tr>")            
             }
         }
+        document.write("</table>");
     </script>
 </body>
 
