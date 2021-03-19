@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>取得與更改 HTML 元素內容</title>
+    <script>
+        function showTxt() {
+            var ele_li = document.getElementById("li_to_show");
+            alert("顯示 li 元素的內容為 " + ele_li.innerHTML);
+        }
+        function changeTxt() {
+            var ele_c = document.getElementById("c_to_change");
+            alert("原始內容為 " + ele_c.innerHTML);
+            ele_c.innerHTML = "這是更改之後的內容了";
+        }
+    </script>
+</head>
+<body>
+    <h2>練習取得與更改 HTML 元素內容</h2>
+    <hr>
+    <p id="c_to_change">這是想要更改的元素內容</p>
+    <ul>
+        <li>這是第壹個項目</li>
+        <li id="li_to_show">這是第貳個項目</li>
+        <li>這是第叁個項目</li>
+        <li>這是第肆個項目</li>
+        <li>這是第伍個項目</li>
+    </ul>
+    <input type="button" onclick="showTxt()" value="顯示元素內容">
+    <input type="button" onclick="changeTxt()" value="更改元素內容">
+</body>
+</html>

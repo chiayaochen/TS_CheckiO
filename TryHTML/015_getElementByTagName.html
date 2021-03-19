@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>使用標籤名稱取得元素節點</title>
+    <script>
+        function getEle_p() {
+            var ele_p = document.getElementsByTagName("p");
+            alert("p 元素共有 " + ele_p.length + " 個");
+        }
+        function getEle_h2 () {
+            var ele_h2 = document.getElementsByTagName("h2");
+            alert("h2 元素共有 " + ele_h2.length + " 個");
+        }
+        function showItem1 () {
+            var strTags = "用item()方法列出input型態有以下：\n";
+            var f = document.getElementsByTagName("input");
+            for (var i = 0; i < f.length; i++) {
+                objEle = f.item(i);
+                strTags += objEle.type + " ; ";
+            }
+            alert(strTags);
+        }
+        function showItem2 () {
+            var strTags = "用陣列列出input型態有以下：\n";
+            var f = document.getElementsByTagName("input");
+            for (var i = 0; i < f.length; i++) {
+                strTags += f[i].type + " ; ";
+            }
+            alert(strTags);
+        }
+    </script>
+</head>
+
+<body>
+    <h2>這是 HTML 元素裡的 h2</h2>
+    <hr>
+    <p>這是 HTML 元素裡的 p</p>
+    <p>這是 HTML 元素裡的 p</p>
+    <p>這是 HTML 元素裡的 p</p>
+    <p>這是 HTML 元素裡的 p</p>
+    <h2>這是 HTML 元素裡的 h2</h2>
+    <form>
+        <input type="text">
+        <input type="radio">
+        <input type="checkbox">
+    </form>
+    <input type="button" onclick="getEle_p()" value="取得 p 元素">
+    <input type="button" onclick="getEle_h2()" value="取得 h2 元素">
+    <input type="button" onclick="showItem1()" value="用 item() 方法取得 input 元素們">
+    <input type="button" onclick="showItem2()" value="用陣列取得 input 元素們">
+</body>
+
+</html>

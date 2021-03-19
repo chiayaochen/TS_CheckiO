@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>存取 HTML 元素的尺寸與位置</title>
+    <script>
+        function show_p() {
+            var msg = "";
+            var pToShow = document.getElementById("p_to_show");
+            msg += "節點物件離左方邊界的距離為 " + pToShow.offsetLeft + " 個單位\n";
+            msg += "節點物件離上方邊界的距離為 " + pToShow.offsetTop + " 個單位\n";
+            msg += "節點物件的寬為 " + pToShow.offsetWidth + " 個單位\n";
+            msg += "節點物件的高為 " + pToShow.offsetHeight + " 個單位\n";
+            msg += "節點物件的上層物件為 " + pToShow.offsetParent.tagName;
+            alert(msg);
+        }
+        function show_p2021() {
+            var all_p = document.getElementsByTagName("p");
+            if (all_p.length > 2021) {
+                all_p[2020].scrollIntoView(true);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h2>練習存取 HTML 元素的尺寸與位置</h2>
+    <hr>
+    <p id="p_to_show">這是要存取的 HTML 元素</p>
+    <form>
+        <input type="button" onclick="show_p()" value="顯示元素資訊">
+        <input type="button" onclick="show_p2021()" value="看看第2021個p">
+    </form>
+    <script>
+        for (var i = 1; i < 10000; i++) {
+            document.write("<p>這是第 " + (i + 1) + "個p</p>");
+        }
+    </script>
+</body>
+
+</html>

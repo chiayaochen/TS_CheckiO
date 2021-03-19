@@ -3,9 +3,26 @@
 <head>
     <meta charset="utf-8">
     <title>使用 Id 屬性取得元素節點</title>
+    <script>
+        function show_A_ele () {
+            var node_a = document.getElementById("google");
+            alert("Node.nodeName 為 "+ node_a.nodeName + "\nNode.tagName 為 "+ node_a.tagName + "\nNode.href 為 " + node_a.href);
+        }
+        function show_btn_ele () {
+            var tag_btn = document.getElementById("test");
+            alert("Tag.tagName 為 " + tag_btn.tagName + "\nTag.nodeName 為 " + tag_btn.nodeName + "\nTag.type 為 " + tag_btn.type);
+        }
+        // tagName 和 nodeName 基本上是一樣的，
+        // 除了 tagName 屬性只有 HTML 元素節點才有，
+        // 在其他類型的節點 (例如 text nodes) 值則會是 undefined。
+    </script>
 </head>
 <body>
-    <script>
-    </script>
+    <h2>練習使用 getElementById 取得元素</h2>
+    <hr>
+    <p id = "content">這邊是內容</p>
+    <p><a id = "google" href = "http://www.google.com.tw">這個放的是GOOGLE連結</a></p>
+    <input id = "test" type="button" onclick="show_A_ele()" value = "按下會選取<a>元素">
+    <input type="button" onclick="show_btn_ele()" value="按下會選取<input>元素">
 </body>
 </html>
