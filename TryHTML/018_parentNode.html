@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>練習瀏覽上一層節點</title>
+    <script>
+        function showParentN_1 () {
+            var obj_li = document.getElementById("li_todo");
+            var superNode = obj_li.parentNode;
+            alert("這裡的上一層節點是 " + superNode.nodeName);
+        }
+        function showParentN_2 () {
+            var obj_span = document.getElementById("span_todo");
+            var superNode = obj_span.parentNode;
+            alert("這裡的上一層節點是 " + superNode.nodeName);
+        }
+    </script>
+</head>
+<body>
+    <h2>練習瀏覽上一層節點</h2>
+    <hr>
+    <ul>
+        <li>這是第一個項目</li>
+        <li style="color: red" id="li_todo" onclick="showParentN_1()">這是可以點的項目</li>
+        <li>這是第三個項目</li>
+        <li>這裡的話<span style="color: green" id="span_todo" onclick="showParentN_2()">請點這裡</span></li>
+        <li>這是第五個項目</li>
+        <li>這是第六個項目</li>
+    </ul>
+</body>
+</html>

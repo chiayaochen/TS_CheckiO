@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>瀏覽兄弟節點</title>
+    <script>
+        function showNode_1() {
+            var objLi = document.getElementById("li_1");
+            var prevSib = objLi.previousSibling;
+            alert("這邊使用的是.firstChild.data取得文字內容，\n而前一個兄弟節點的內容為：" + prevSib.firstChild.data);
+        }
+        function showNode_2() {
+            var objLi = document.getElementById("li_2");
+            var nextSib = objLi.nextSibling;
+            alert("這邊使用的是.innerHTML取得文字內容，\n而後一個兄弟節點的內容為：" + nextSib.innerHTML);
+        }
+    </script>
+</head>
+
+<body>
+    <h2>練習瀏覽兄弟節點</h2>
+    <hr>
+    <ul>
+        <!-- 注意以下的<li>們不可以加入</li>結尾，否則無法成為兄弟節點，結果就會變成undefined -->
+        <li>這是第一個項目
+        <li id="li_1" style="color: red" onclick="showNode_1()">請按這邊看看
+        <li>這是第三個項目
+        <li>這是第四個項目
+        <li id="li_2" style="color: green" onclick="showNode_2()">請按這邊看看
+        <li>這是第六個項目
+    </ul>
+</body>
+
+</html>
