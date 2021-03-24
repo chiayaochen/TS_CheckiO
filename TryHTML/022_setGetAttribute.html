@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>存取HTML標籤的屬性值</title>
+    <script>
+        function setAlig(strAlig) {
+            var p = document.getElementById("p1");
+            p.align = strAlig;
+        }
+        function getAlig() {}
+        function swiAlig() {}
+    </script>
+</head>
+
+<body>
+    <h2>練習存取 HTML 標籤的屬性值</h2>
+    <hr>
+    <p id="p1" align="left">這行用以顯示與設定其標籤屬性</p>
+    <p align="left">這行單純測試切換功能</p>
+    <p align="left">這行單純測試切換功能</p>
+    <hr>
+    <form>
+        <input type="button" onclick="setAlig('center')" value="測試置中對齊">
+        <input type="button" onclick="getAlig()" value="取得標籤屬性">
+        <input type="button" onclick="swiAlig()" value="切換標籤屬性">
+    </form>
+</body>
+
+</html>

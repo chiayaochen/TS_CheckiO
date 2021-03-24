@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>練習查看HTML集合物件</title>
+    <script>
+        // document.images 則是包含所有<img>的標籤
+        function showForms() {
+            var f = document.forms;
+            alert("這份檔案裡面共有 " + f.length + " 個 <form> 標籤");
+        }
+        function showAnchors() {
+            var a = document.anchors;
+            var msg = "";
+            msg += "這份檔案裡面共有 " + a.length + " 個有 name 屬性的 <a> 標籤\n";
+            msg += "其中的連結分別為\n";
+            for (var i = 0; i < a.length; i++) {
+                msg += a.item(i).href;
+                msg += "\n";
+            }
+            alert(msg);
+        }
+        function showLinks() {
+            var l = document.links;
+            var msg = "";
+            msg += "這份檔案裡面共有 " + l.length + " 個有 href 屬性的 <a> 標籤\n";
+            msg += "其中的連結分別為\n";
+            for (var i = 0; i < l.length; i++) {
+                msg += l.item(i).href;
+                msg += "\n";
+            }
+            alert(msg);
+        }
+    </script>
+</head>
+
+<body>
+    <h2>練習查看HTML的集合物件</h2>
+    <hr>
+    <p><a name="google" href="http://www.google.com.tw">Google</a></p>
+    <p><a name="tmu" href="http://www.tmu.edu.tw">TMU</a></p>
+    <p><a name="hinet" href="http://www.hinet.net">Hinet</a></p>
+    <p><a name="test1">No link 1</a></p>
+    <p><a name="test2">No link 2</a></p>
+    <hr>
+    <form name="form1"></form>
+    <form name="form2"></form>
+    <form name="form3"></form>
+    <form name="form4">
+        <input type="button" onclick="showForms()" value="forms集合">
+        <input type="button" onclick="showAnchors()" value="anchors集合">
+        <input type="button" onclick="showLinks()" value="links集合">
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>瀏覽子節點與元素</title>
+    <script>
+        function showChild(){
+            var objUL = document.getElementById("theUL");
+            var objChildNodes = objUL.childNodes;
+            var objChildren = objUL.children;
+            var msg = "";
+            msg += "使用.childNodes可以取得子節點並包含文字節點，結果如下：\n";
+            for (var i = 0; i < objChildNodes.length; i++) {
+                objEle = objChildNodes.item(i);
+                msg += "第 "+(i+1)+" 個子節點的名稱為 "+objEle.nodeName;
+                msg += " 內容為 " + objEle.innerHTML + "\n";
+            }
+            msg +="\n\n"
+            msg += "使用.children可以取得子節點並且不包含文字節點，結果如下：\n";
+            for (var i = 0; i < objChildren.length; i++) {
+                objEle = objChildren.item(i);
+                msg += "第 "+(i+1)+" 個子節點的名稱為 "+objEle.nodeName;
+                msg += " 內容為 " + objEle.innerHTML + "\n";
+            }
+            alert(msg);
+        }
+    </script>
+</head>
+<body>
+    <h2>練習瀏覽子節點與子元素</h2>
+    <hr>
+    <ul id="theUL">
+        <li>這是第一個項目</li>
+        <li style="color: red;" id="theLI" onclick="showChild()">按這邊看看瀏覽子節點的結果</li>
+        <li>這是第三個項目</li>
+        <li>這是第四個項目</li>
+        <li>這是第五個項目</li>
+        <li>這是第六個項目</li>
+        <li>這是第七個項目</li>
+    </ul>
+</body>
+</html>
