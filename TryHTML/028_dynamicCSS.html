@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>練習動態CSS樣式</title>
+    <style type="text/css">
+    .myOrigin {
+        font-size: 24pt;
+        color: white;
+        background-color: black;
+    }
+    .bigred {
+        font-size: 48pt;
+        background-color: red;
+    }
+    </style>
+    <script>
+        function setGreen() {
+            var title1 = document.getElementById("title1");
+            title1.style.color = "green";
+        }
+        function setLarge() {
+            var title1 = document.getElementById("title1");
+            title1.style.fontSize = "60pt";
+        }
+        function setSmall() {
+            var title1 = document.getElementById("title1");
+            title1.style.fontSize = "8pt";
+        }
+        function setHidden() {
+            var title1 = document.getElementById("title1");
+            if (title1.style.display == "none") {
+                title1.style.display = "";
+            } else {
+                title1.style.display = "none";
+            }
+        }
+        function setOrigin() {
+            var title1 = document.getElementById("title1");
+            title1.style = document.head.style.myOrigin;
+        }
+    </script>
+</head>
+<body>
+    <h2 id="title1" class="myOrigin" onmouseover="this.style.color='yellow';" onmouseout="this.style.color='blue';" onclick="this.className='bigred';">練習動態CSS樣式，也可設定滑鼠滑過或按一下</h2>
+    <hr>
+    <input type="button" value="變綠" onclick="setGreen()">
+    <input type="button" value="放大" onclick="setLarge()">
+    <input type="button" value="縮小" onclick="setSmall()">
+    <input type="button" value="隱藏" onclick="setHidden()">
+    <input type="button" value="還原" onclick="setOrigin()">
+</body>
+</html>

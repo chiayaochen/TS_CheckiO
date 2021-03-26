@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>練習巢狀選擇器</title>
+    <style type="text/css">
+    div p {
+        font-size: 24pt;
+        color: red;
+        background-color:green;
+        font-weight: bold;
+    }
+    span p {
+        font-size: 18pt;
+        color: yellow;
+        background-color: blue;
+    }
+    </style>
+</head>
+<body>
+    <h2>練習巢狀選擇器</h2>
+    <p>這邊是普通的&#060;p&#062;標籤</p>
+    <p>巢狀選擇器 (descendant selectors) 是當 HTML 元素分別擁有同類型的子孫元素時，為了避免樣式混淆的一種方式</p>
+    <hr>
+    <div><p>這是div裡的p標籤之一</p></div>
+    <span><p>這是span裡的p標籤其一</p></span>
+    <span><p>這是span裡的p標籤其二</p></span>
+    <div><p>這是div裡的p標籤之二</p></div>
+    <span><p>這是span裡的p標籤其三</p></span>
+    <span><p>這是span裡的p標籤其四</p></span>
+    <span><p>這是span裡的p標籤其五</p></span>
+</body>
+</html>
