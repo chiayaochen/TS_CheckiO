@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>練習使用jQuery的even和odd篩選選擇器</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        .even_back {
+            background-color: #87CEFA;
+        }
+        .odd_back {
+            background-color: #90EE90;
+        }
+    </style>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        $(document).ready(function(){
+            $('tr:even').addClass('even_back');
+            $('tr:odd').addClass('odd_back');
+        })
+    </script>
+</head>
+<body>
+    <h2>以下是一個普通的表格，但用jQuery做出斑馬紋的效果</h2>
+    <hr>
+    <table border="1">
+        <tr>
+            <td>AAAAAAAA</td>
+            <td>BBBBBBBB</td>
+            <td>CCCCCCCC</td>
+        </tr>
+        <tr>
+            <td>DDDDDDDD</td>
+            <td>EEEEEEEE</td>
+            <td>FFFFFFFF</td>
+        </tr>
+        <tr>
+            <td>GGGGGGGG</td>
+            <td>HHHHHHHH</td>
+            <td>IIIIIIII</td>
+        </tr>
+        <tr><td>JJJJJJJJ</td>
+            <td>KKKKKKKK</td>
+            <td>LLLLLLLL</td>
+        </tr>
+        <tr>
+            <td>MMMMMMMM</td>
+            <td>NNNNNNNN</td>
+            <td>OOOOOOOO</td>
+        </tr>
+        <tr>
+            <td>PPPPPPPP</td>
+            <td>QQQQQQQQ</td>
+            <td>RRRRRRRR</td>
+        </tr>
+</body>
+</html>

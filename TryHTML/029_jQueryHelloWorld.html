@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>第一個jQuery程式</title>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        $(document).ready(
+            // 接下來是用匿名函數執行 $(選擇器字串).方法(參數列);
+            function () {
+                $('<h1>這是第一個用jQuery建立的頁面唷！</h1>').appendTo('body');
+            }
+        )
+    </script>
+</head>
+<body>
+</body>
+</html>
