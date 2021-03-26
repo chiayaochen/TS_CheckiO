@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>練習檢查與刪除節點</title>
+    <script>
+        function printChilds(targetNode) {
+            var msg = "";
+            msg += "目前的節點名稱為 " + targetNode.nodeName + "\n";
+            if (targetNode.hasChildNodes()) {
+                msg += "子節點 有" + targetNode.children.length + "個，詳列如下\n";
+                for (var i = 0; i < targetNode.children.length; i++) {
+                    msg += "標籤名稱為 " + targetNode.children[i].nodeName + "\n"
+                }
+            }
+            alert(msg);
+        }
+        function deleteChild(superNode, subNode) {
+            var msg ="";
+            msg += "將刪除的子節點為 " + subNode.nodeName + "\n";
+            msg += "將刪除的子節點，在其之下有"+　subNode.children.length + "個子節點\n";
+            alert(msg);
+            superNode.removeChild(subNode); 
+        }
+    </script>
+</head>
+<body>
+    <h2>練習檢查與刪除節點</h2>
+    <hr>
+    <div id="div1">
+        <p><span>段落一</span></p>
+        <p id="p2"><span>段落二</span></p>
+        <p><span>段落三</span></p>
+        <p><span>段落四</span></p>
+        <p id="p5"><span>段落五</span></p>
+        <p><span>段落六</span></p>
+        <p><span>段落七</span></p>
+    </div>
+    <hr>
+    <form>
+        <script>
+            var div1 = document.getElementById("div1");
+            var p2 = document.getElementById("p2");
+            var p5 = document.getElementById("p5");
+        </script>
+        <input type="button" value="顯示子節點" onclick="printChilds(div1)">
+        <input type="button" value="刪除段落二" onclick="deleteChild(div1, p2)">
+        <input type="button" value="刪除段落五" onclick="deleteChild(div1, p5)">
+    </form>
+</body>
+</html>

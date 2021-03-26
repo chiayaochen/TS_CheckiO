@@ -9,17 +9,35 @@
             var p = document.getElementById("p1");
             p.align = strAlig;
         }
-        function getAlig() {}
-        function swiAlig() {}
+        function getAlig() {
+            // 這邊用另一個方式取得第一個<p>標籤
+            var p = document.getElementsByTagName("p");
+            alert("目前第三個<p>標籤的屬性已經變更為 " + p.item(2).align);
+        }
+        function swiAlig() {
+            var p = document.getElementsByTagName("p");
+            // 這邊除了改成陣列來得到想要的標籤物件
+            // 也改成使用 getAttribute 與 setAttribute 來更改屬性
+            if (p[2].getAttribute("align") == "left") {
+                p[2].setAttribute("align", "center");
+            } else if (p[2].getAttribute("align") == "center") {
+                p[2].setAttribute("align", "right");
+            } else {
+                p[2].setAttribute("align", "left");
+            }
+        }
     </script>
 </head>
 
 <body>
     <h2>練習存取 HTML 標籤的屬性值</h2>
     <hr>
+    <p align="left">這行單純擺著而已</p>
+    <p align="left">這行單純擺著而已</p>
     <p id="p1" align="left">這行用以顯示與設定其標籤屬性</p>
-    <p align="left">這行單純測試切換功能</p>
-    <p align="left">這行單純測試切換功能</p>
+    <p align="left">這行單純擺著而已</p>
+    <p align="left">這行單純擺著而已</p>
+    <p align="left">這行單純擺著而已</p>
     <hr>
     <form>
         <input type="button" onclick="setAlig('center')" value="測試置中對齊">

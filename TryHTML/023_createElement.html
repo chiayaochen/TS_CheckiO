@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>練習新增與插入節點</title>
+    <script>
+        function appendNode() {
+            var div1 = document.getElementById("div1");
+            // 手動新增一個段落節點物件
+            var newPnode = document.createElement("p");
+            // 手動新增一個文字節點物件
+            var strTxt = "段落四：這是新增的";
+            var newTxtNode = document.createTextNode(strTxt);
+            // 把新增的段落節點掛到目標div節點上面
+            div1.appendChild(newPnode);
+            // 把新增的文字節點掛到新增的段落節點上面
+            newPnode.appendChild(newTxtNode);
+        }
+        function insertNode() {
+            var div1 = document.getElementById("div1");
+            // 手動新增一個段落節點物件
+            var newPnode = document.createElement("p");
+            // 手動新增一個文字節點物件
+            var strTxt = "段落一點五：這是新增的";
+            var newTxtNode = document.createTextNode(strTxt);
+            // 把新增的段落節點插入
+            var broNode = div1.children[1];
+            div1.insertBefore(newPnode, broNode);
+            // 把新增的文字節點掛到新增的段落節點上面
+            newPnode.appendChild(newTxtNode);
+        }
+    </script>
+</head>
+
+<body>
+    <h2>練習新增與插入節點</h2>
+    <hr>
+    <div id="div1">
+        <p onclick="appendNode()">段落一：點我會在最下方增加新的段落四</p>
+        <p onclick="insertNode()">段落二：點我會在上方插入段落一點五</p>
+        <p>段落三：就只是擺著</p>
+    </div>
+</body>
+
+</html>
