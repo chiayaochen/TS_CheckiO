@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>鍵盤事件</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+    </style>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        // 設定最大的字元數量
+        var maxChar = 32;
+        $(document).ready(function(){
+            // 這裡填寫要進行的jQuery的部分
+            // 填入目前的字元數量
+            $('#counting').text(maxChar);
+            // 寫下每次文字區域有按鍵按下去時要觸發的事件
+            $('#txtfield').keydown(function(event){
+                // 取得文字區域中的文字
+                var msg = $(this).val();
+                // 計算字元數
+                var numChar = msg.length;
+                // 計算剩餘字元數
+                var remainChar = maxChar - numChar;
+                if (numChar <= maxChar){
+                    // 填入剩餘字元數到頁面上
+                    $('#counting').text(remainChar);
+                } else {
+                    // 如果超過設定的最大字元數量
+                    // 就不允許再輸入文字
+                    // 所以必須拿掉元素的預設行為來達成這個設定
+                    event.preventDefault();
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <h2>練習鍵盤事件</h2>
+    <hr>
+    <p>還可以輸入個<span id="counting"></span>字元</p>
+    <textarea id="txtfield" cols="48" rows="16"></textarea>
+</body>
+</html>

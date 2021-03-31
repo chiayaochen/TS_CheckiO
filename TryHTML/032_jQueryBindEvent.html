@@ -2,12 +2,23 @@
 <html lang="zh-TW">
 <head>
     <meta charset="utf-8">
-    <title>這個是標題</title>
+    <title>練習bind事件方法</title>
     <!-- 這邊設定CSS樣式 -->
-    <style>
+    <style type="text/css">
         /* 這邊是填寫要設定的CSS樣式 */
         .giveLine {
             border: 3px solid #800080;
+            cursor: pointer;
+        }
+        .beChosen {
+            font-weight: bold;
+            background-color: #FFD700;
+        }
+        .largeRRR {
+            font-size: 48pt;
+        }
+        .smalleRR {
+            font-size: 8pt;
         }
     </style>
     <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
@@ -18,15 +29,46 @@
     <script>
         $(document).ready(function(){
             // 這裡填寫要進行的jQuery的部分
+            $('span').addClass('giveLine');
+            $('#largerrr').bind('click', beLarge);
+            // 上面指的是按下去的時候，註冊的事件處理函數名字是叫做 beLarge
+            // 下面把 beLarge 的運算寫出來
+            function beLarge(){
+                // 如果有之前選擇過的元素，先清除其樣式
+                $('#likeButton span').removeClass('beChosen');
+                // 然後使用 this 關鍵字代表現在使用者所選擇的元素
+                $(this).addClass('beChosen');
+                $('p').removeClass('smalleRR');
+                $('p').addClass('largeRRR');
+            }
+            // 下面則是練習用匿名函式來寫
+            $('#defaultt').bind('click', function(){
+                // 如果有之前選擇過的元素，先清除其樣式
+                $('#likeButton span').removeClass('beChosen');
+                // 然後使用 this 關鍵字代表現在使用者所選擇的元素
+                $(this).addClass('beChosen');
+                $('p').removeClass('smalleRR');
+                $('p').removeClass('largeRRR');
+            });
+            // 也可以不使用 bind() 直接用同名的 click 來寫
+            $('#smallerr').click(function(){
+                // 如果有之前選擇過的元素，先清除其樣式
+                $('#likeButton span').removeClass('beChosen');
+                // 然後使用 this 關鍵字代表現在使用者所選擇的元素
+                $(this).addClass('beChosen');
+                $('p').removeClass('largeRRR');
+                $('p').addClass('smalleRR');
+            });
         })
     </script>
 </head>
 <body>
     <h2>這邊會練習使用 bind() 方法來建立事件處理</h2>
     <hr>
-    <div>
+    <div id="likeButton">
         <span id="defaultt">預設值</span>
         <span id="largerrr">字變大</span>
+        <span id="smallerr">字變小</span>
     </div>
     <hr>
     <p>練習 bind() 建立事件處理</p>

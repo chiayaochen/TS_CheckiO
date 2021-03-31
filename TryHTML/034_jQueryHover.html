@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>練習 hover 方法</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style type="text/css">
+        /* 這邊是填寫要設定的CSS樣式 */
+        .giveLine {
+            border: 3px solid #800080;
+            cursor: pointer;
+        }
+        .beChosen {
+            font-weight: bold;
+            background-color: #FFD700;
+        }
+        .largerrr {
+            font-size: 48pt;
+        }
+        .smallerr {
+            font-size: 8pt;
+        }
+        .styleHover {
+            cursor: pointer;
+            background-color: #228B22;
+        }
+    </style>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        $(document).ready(function(){
+            // 如果故意把 樣式名稱 與 id 名稱 相同
+            // 則可以利用 事件物件 改寫前一個冗長的程式
+            $('span').addClass('giveLine');
+            // 然後設定 div 之下的元素如果有被 click 會怎樣
+            $('#likeButton').click(function(event){
+                // 上方的 event 可以將事件物件的參數傳入
+                // 然後 event.target 可以取得觸發此事件的元素
+                if ($(event.target).is('span')){
+                    var classname = event.target.id;
+                    // 由於 故意把 樣式名稱 與 id 名稱 相同
+                    // 可以把移除與設定樣式寫成一串
+                    $('p').removeClass().addClass(classname);
+                    // 移除所有 span 的背景
+                    $('#likeButton span').removeClass('beChosen');
+                    // 增加觸發事件元素的背景
+                    $(event.target).addClass('beChosen');
+                    // 接下來記得加上 stopPropagation() 避免上一層的元素重複處理此事件
+                    event.stopPropagation();
+                }
+            });
+            //  .hover(,) 就如同於 .mouseenter 與 .mouseleave 這兩個事件的合體
+            $('#useHover h2').hover(function(){
+                $(this).addClass('styleHover');
+            },function(){
+                $(this).removeClass('styleHover');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="useHover">
+        <h2>使用 hover() 的話，可以做到滑鼠在這邊移進移出，就可以有不同的變化</h2>
+    </div>
+    <hr>
+    <div id="likeButton">
+        <span id="defaultt">預設值</span>
+        <span id="largerrr">字變大</span>
+        <span id="smallerr">字變小</span>
+    </div>
+    <hr>
+    <p>練習使用hover()</p>
+    <hr>
+</body>
+</html>
