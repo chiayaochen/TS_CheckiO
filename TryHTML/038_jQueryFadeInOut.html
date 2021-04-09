@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>練習淡入淡出特效</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+        .moreTxt {
+            font-size: 14pt;
+        }
+        .showTxt, .hideTxt, .toggleTxt {
+            font-size: 16pt;
+            color: green;
+            border: 2px solid red;
+        }
+    </style>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        $(document).ready(function(){
+            // 這裡填寫要進行的jQuery的部分
+            // 預備先隱藏不需要顯現的元素
+            $('div.moreTxt').hide();
+            $('a.hideTxt').hide();
+            $('a.showTxt').click(function(){
+                $(this).hide();
+                $('div.moreTxt').fadeIn(3000);
+                $('a.hideTxt').show();
+                return false;
+            });
+            $('a.hideTxt').click(function(){
+                $(this).hide();
+                $('div.moreTxt').fadeOut(1000);
+                $('a.showTxt').show();
+                return false;
+            });
+            $('a.toggleTxt').click(function(){
+                $('div.moreTxt').fadeToggle(1500);
+                return false;
+            });
+        })
+    </script>
+</head>
+<body>
+    <h2>練習建立淡入淡出特效</h2>
+    <hr>
+    <p>這個段落是不會有任何變化的</p>
+    <div class="moreTxt">
+        <p>這個是隱藏的內容一</p>
+        <p>這個是隱藏的內容二</p>
+        <p>這個是隱藏的內容三</p>
+        <p>這個是隱藏的內容四</p>
+        <p>這個是隱藏的內容五</p>
+    </div>
+    <a href="#" class="showTxt">顯示內容</a>
+    <a href="#" class="hideTxt">隱藏內容</a>
+    <a href="#" class="toggleTxt">切換內容</a>
+</body>
+</html>

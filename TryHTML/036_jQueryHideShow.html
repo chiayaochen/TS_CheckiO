@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>練習 元素的 Hide 與 Show</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+    </style>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        $(document).ready(function(){
+            // 這裡填寫要進行的jQuery的部分
+            // ----
+            // 這邊示範了一個
+            // 不去填寫 class 樣式內容
+            // 而單純利用 class 當作內容選擇器的一種寫法
+            // ----
+            // 一開始先把所有秘密段落隱藏起來
+            $('p.secret1').hide();
+            $('p.secret2').hide();
+            // 因為已經隱藏了秘密內容，所以把有隱藏功能的文字也隱藏起來
+            $('a.hideAll').hide();
+            // 顯示第一個祕密段落
+            $('a.more1').click(function(){
+                $('p.secret1').show();
+                $('p.secret2').hide();
+                // 按了之後把顯示功能的文字也隱藏起來
+                $(this).hide();
+                $('a.more2').hide();
+                // 顯示有隱藏功能的文字
+                $('a.hideAll').show();
+                // 然後把按鈕功能關掉
+                return false;
+            });
+            // 顯示第二個祕密段落
+            $('a.more2').click(function(){
+                // 參數代表顯示或隱藏的速度
+                $('p.secret2').show(1000);
+                $('p.secret1').hide('slow');
+                // 按了之後把顯示功能的文字也隱藏起來
+                $(this).hide();
+                $('a.more1').hide();
+                // 顯示有隱藏功能的文字
+                // 參數也可以用 slow, normal, fast 等字串取代
+                // slow 預設是 600ms, normal 預設是 400ms, fast 預設是 200ms
+                $('a.hideAll').show('slow');
+                // 然後把按鈕功能關掉
+                return false;
+            });
+            // 隱藏秘密內容
+            $('a.hideAll').click(function(){
+                $('p.secret1').hide(800);
+                $('p.secret2').hide(800);
+                // 也可以先把有功能的文字全部顯示
+                $('a').show();
+                // 再去隱藏有隱藏功能的文字
+                $(this).hide();
+                // 然後把按鈕功能關掉
+                return false;
+            });
+        })
+    </script>
+</head>
+<body>
+    <h2>練習元素的顯示與隱藏</h2>
+    <hr>
+    <div>
+        <p>這一個段落是不變的，因為我沒有定義任何的樣式名稱。</p>
+        <p class="secret1">
+            這是第一個隱藏段落，採用預設值；<br>
+            這是第一個隱藏段落，採用預設值；<br>
+            這是第一個隱藏段落，採用預設值；<br>
+            這是第一個隱藏段落，採用預設值；<br>
+            這是第一個隱藏段落，採用預設值；<br>
+        </p>
+        <p class="secret2">
+            這是第二個隱藏段落，採用緩慢顯示；<br>
+            這是第二個隱藏段落，採用緩慢顯示；<br>
+            這是第二個隱藏段落，採用緩慢顯示；<br>
+            這是第二個隱藏段落，採用緩慢顯示；<br>
+            這是第二個隱藏段落，採用緩慢顯示；<br>
+        </p>
+        <a href="#" class="more1">顯示第一個秘密段落</a>
+        <a href="#" class="more2">顯示第二個秘密段落</a>
+        <a href="#" class="hideAll">全部隱藏</a>
+    </div>
+</body>
+</html>

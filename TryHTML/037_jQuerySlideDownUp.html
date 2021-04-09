@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>練習滑動特效</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+        .clickToSee {
+            font-size: 18pt;
+        }
+        .moreOpts {
+            font-size: 12pt;
+            padding: 3px;
+            border: 2px solid red;
+            width: 50%;
+        }
+    </style>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        $(document).ready(function(){
+            // 這裡填寫要進行的jQuery的部分
+            // 先隱藏選擇項目
+            $('div.moreOpts').hide();
+            $('a.clickToSee').click(function(){
+                // 按照目前狀態來決定選項是開啟還是闔上
+                if ($('div.moreOpts').is(':hidden')) {
+                    $('div.moreOpts').slideDown(2000);
+                } else {
+                    $('div.moreOpts').slideUp(2000);
+                }
+                return false;
+            });
+        })
+    </script>
+</head>
+<body>
+    <h2>模擬打開收合的滑動特效</h2>
+    <hr>
+    <div>
+        <div>
+            <p>這一個段落不會變動</p>
+            <a href="#" class="clickToSee">這個則是模擬按一下可以開闔出選項</a>
+        </div>
+        <div class="moreOpts">
+            <input type="checkbox">模擬選項壹<br>
+            <input type="checkbox">模擬選項貳<br>
+            <input type="checkbox">模擬選項叁<br>
+            <input type="checkbox">模擬選項肆<br>
+            <input type="checkbox">模擬選項伍<br>
+        </div>
+        <div>
+            <p>這一個段落也是不會變動的</p>
+        </div>
+    </div>
+</body>
+</html>

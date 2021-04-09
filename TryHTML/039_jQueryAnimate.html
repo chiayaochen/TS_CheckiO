@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>練習 animate() 方法</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+        div p {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+        .aniTxt {
+            font-size: 8pt;
+        }
+    </style>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        $(document).ready(function(){
+            // 這裡填寫要進行的jQuery的部分
+            // animate({屬性} [,Duration] [,變速 Easing 可選 linear或swing] [, 回撥函數] )
+            $('div.aniTxt').animate({
+                left: '+=200px',
+                fontSize: '100pt',
+                opacity: '50%'
+            },3000);
+            $('div.aniTxt').animate({
+                left: '-=200px',
+                fontSize: '12pt',
+                opacity: '30%'
+            },3000);
+        })
+    </script>
+</head>
+<body>
+<h2>練習使用 animate() 方法建立特效</h2>
+<hr>
+<div class="aniTxt">
+    <p>測試用文字一</p>
+    <p>測試用文字二</p>
+    <p>測試用文字三</p>
+    <p>測試用文字四</p>
+    <p>測試用文字五</p>
+</div>
+</body>
+</html>
