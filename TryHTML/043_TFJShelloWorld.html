@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>Tensorflow.js Hello World</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+        div {
+            font-weight: normal;
+        }
+
+        span.bold {
+            font-weight: bold;
+        }
+
+        span.underline {
+            text-decoration: underline solid;
+            text-decoration-color: gray;
+        }
+
+        span.blue {
+            color: blue;
+        }
+    </style>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <!-- -->
+    <!-- -->
+    <!-- -->
+    <!-- 以下則是載入jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        $(document).ready(function () {
+            // 這裡填寫要進行的jQuery的部分
+        })
+    </script>
+    <!-- -->
+    <!-- -->
+    <!-- -->
+    <!-- 以下則是載入 Tensorflow.js-->
+    <!-- 相關 api 可以查詢 https://js.tensorflow.org/api/latest/ -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+    <script>
+        function showProp(x_data) {
+            let x_prop = Object.getOwnPropertyNames(x_data);
+            document.write("<span class=\"underline\">");
+            document.write("張量值 " + "<span class=\"blue\">" + x_data + "</span>" + "；<br>");
+            for (obj of x_prop) {
+                document.write("屬性 " + "<span class=\"blue\">" + obj + "</span>" + " 的值為 ");
+                document.write("<span class=\"blue\">" + x_data[obj] + "</span>" + "；<br>");
+            }
+            document.write("</span>");
+        }
+    </script>
+    <!-- -->
+    <!-- -->
+    <!-- -->
+</head>
+
+<body>
+    <h2>開始練習 Tensorflow.js 嘍</h2>
+    <hr>
+    <script>
+        // 純量
+        const x_scalar = tf.scalar(95.27);
+        document.write("<div><p><span class=\"bold\">");
+        document.write("0維張量 就是 純量 (Scalar)<br>");
+        document.write("其屬性如下所示：<br><br></span>");
+        showProp(x_scalar);
+        document.write("</p></div><hr>");
+        // 一維向量
+        const x_1d = tf.tensor1d([1.23, 2.34, 3.45, 4.56, 5.67]);
+        document.write("<div><p><span class=\"bold\">");
+        document.write("1維張量 就是 向量 (Vector)<br>");
+        document.write("其屬性如下所示：<br><br></span>");
+        showProp(x_1d);
+        document.write("</p></div><hr>");
+        // 二維矩陣
+        const x_2d = tf.tensor2d([
+            [1.2, 2.3, 3.4, 4.5, 5.6, 6.7],
+            [7.8, 8.9, 9.1, 1.9, 9.8, 8.7],
+            [7.6, 6.5, 5.4, 4.3, 3.2, 2.1],
+            [1.3, 3.5, 5.7, 7.9, 2.4, 4.6]
+        ]);
+        document.write("<div><p><span class=\"bold\">");
+        document.write("2維張量 就是 矩陣 (Matrix)<br>");
+        document.write("其屬性如下所示：<br><br></span>");
+        showProp(x_2d);
+        document.write("</p></div><hr>");
+        // 三維陣列
+        const x_3d = tf.tensor3d([
+            [
+                [1,2,3],
+                [4,5,6]
+            ],
+            [
+                [7,8,9],
+                [3,2,1]
+            ],
+            [
+                [6,5,4],
+                [9,8,7]
+            ],
+            [
+                [3,5,1],
+                [6,4,2]
+            ]
+        ]);
+        document.write("<div><p><span class=\"bold\">");
+        document.write("3維張量<br>");
+        document.write("其屬性如下所示：<br><br></span>");
+        showProp(x_3d);
+        document.write("</p></div><hr>");
+    </script>
+</body>
+
+</html>
