@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>練習文字欄位驗證</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+        .error {
+            border: 3px solid red;
+        }
+    </style>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        $(document).ready(function(){
+            // 這裡填寫要進行的jQuery的部分
+            // 注意以下 選擇器 的搜尋手法
+            $(':submit').click(function(event){
+                // 按下送出資料鍵之前檢查每個文字欄位
+                $(':text').each(function(){
+                    // 以下的 this 指的是 每個文字欄位
+                    if ($(this).val().length == 0) {
+                        $(this).addClass('error');
+                    }
+                    // 然後要避免預設的狀況，不然會自動還原，就無法達到提醒效果
+                });
+                event.preventDefault();
+            });
+            // 但如果我有想要輸入，則把紅框警告拿掉
+            $(':input').focus(function(){
+                $(this).removeClass('error');
+            });
+        })
+    </script>
+</head>
+<body>
+    <h2>練習文字欄位驗證</h2>
+    <hr>
+    <div>
+        <form action="">
+            Name: <input type="text"><br>
+            Email: <input type="text"><br>
+            Phone: <input type="text"><br>
+            <textarea rows="5" cols="25"></textarea><br>
+            <input type="submit" value="OK, I have finished.">
+        </form>
+    </div>
+</body>
+</html>

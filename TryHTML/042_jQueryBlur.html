@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>練習 blur 方法</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+        span.error {
+            float: inline-end;
+            font-weight: bold;
+            color: purple;
+        }
+
+        input.error {
+            border: 3px solid red;
+        }
+    </style>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        $(document).ready(function () {
+            // 這裡填寫要進行的jQuery的部分
+            // 練習一旦失去焦點就檢查文字欄位
+            $(':input').blur(function () {
+                if ($(this).val().length == 0) {
+                    $(this)
+                        .addClass('error')
+                        // 寫一下紅框框完之後要幹嘛
+                        .after('<span class="error">Please complete this!!!</span>');
+                }
+            });
+            // 正在輸入的則拿掉紅框與警告文字
+            $(':input').focus(function () {
+                $(this)
+                    .removeClass('error')
+                    // 然後拿掉警告文字
+                    .next('span').remove();
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <h2>練習利用 blur 進行即時的欄位資料檢查</h2>
+    <hr>
+    <div>
+        <form action="">
+            Name: <input type="text"><br>
+            Email: <input type="text"><br>
+            Phone: <input type="text"><br>
+            <textarea rows="5" cols="25"></textarea><br>
+            <input type="submit" value="OK, I have finished.">
+        </form>
+    </div>
+</body>
+
+</html>
