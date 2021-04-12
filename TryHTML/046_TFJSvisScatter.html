@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>練習繪製散佈圖</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+        div {
+            font-weight: normal;
+        }
+
+        span.bold {
+            font-weight: bold;
+        }
+
+        span.underline {
+            text-decoration: underline solid;
+            text-decoration-color: gray;
+        }
+
+        span.blue {
+            color: blue;
+        }
+    </style>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <!-- -->
+    <!-- -->
+    <!-- -->
+    <!-- 以下則是載入jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        $(document).ready(function(){
+            // 這裡填寫要進行的jQuery的部分
+        })
+    </script>
+    <!-- -->
+    <!-- -->
+    <!-- -->
+    <!-- 以下則是載入 Tensorflow.js-->
+    <!-- 相關 api 可以查詢 https://js.tensorflow.org/api/latest/ -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+    <!-- 以下則是載入 tfjs-vis-->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis/dist/tfjs-vis.umd.min.js"></script>
+    <!-- -->
+    <!-- -->
+    <!-- -->
+</head>
+<body>
+    <h2>練習繪製散佈圖</h2>
+    <hr>
+    <script>
+        // 建立連續均勻分布的隨機值張量
+        // 使用方式 tf.randomUniform(形狀矩陣, 最小值, 最大值, 資料型別)
+        // 相關說明在 https://js.tensorflow.org/api/latest/?hl=zh-tw#randomUniform
+        // 
+        const x_rndUni = tf.randomUniform(shape = [10], minval = 0, maxval = 10, dtype = 'float32');
+        document.write("<div><p><span class=\"bold\">");
+        document.write("建立一個連續均勻分布的隨機值張量 x<br></span>");
+        document.write("張量 x 為 " + "<span class=\"blue\">" + x_rndUni + "</span>" + "；<br>");
+        document.write("</p></div><hr>");
+        const y_rndUni = tf.randomUniform(shape = [10], minval = 60, maxval = 100, dtype = 'float32');
+        document.write("<div><p><span class=\"bold\">");
+        document.write("建立一個連續均勻分布的隨機值張量 y<br></span>");
+        document.write("張量 y 為 " + "<span class=\"blue\">" + y_rndUni + "</span>" + "；<br>");
+        document.write("</p></div><hr>");
+        // 建立一個空陣列來放成對的xy的物件
+        let xy_dt = [];
+        for (let i = 0; i < x_rndUni.arraySync().length; i++) {
+            // 建立空物件放xy
+            let xy_obj = {};
+            xy_obj.x = x_rndUni.arraySync()[i];
+            xy_obj.y = y_rndUni.arraySync()[i];
+            // 然後擺到資料陣列裡面
+            xy_dt.push(xy_obj);
+        }
+        // 接下來畫散佈圖的做法其實一模一樣
+        // 參數中的 container
+        const chart_ct = {
+            name: '手機使用時數和考試成績',
+            tab: '這是個散佈圖'
+        };
+        // 參數中的 data
+        const chart_dt = {
+            values: [xy_dt],
+            series: ['時數與成績']
+        };
+        // 參數中的 opts
+        const chart_opts = {
+            xLabel: '使用時數',
+            yLabel: '考試成績',
+            xAxisDomain: [0, 10],
+            yAxisDomain: [60, 100],
+            seriesColors:['green'],
+            height: 300,
+            width: 400
+        };
+        tfvis.render.scatterplot(
+            container = chart_ct,
+            data = chart_dt,
+            opts = chart_opts
+        );
+        
+    </script>
+</body>
+</html>

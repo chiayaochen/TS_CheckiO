@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>練習繪製長條圖</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+    </style>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <!-- -->
+    <!-- -->
+    <!-- -->
+    <!-- 以下則是載入jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        $(document).ready(function(){
+            // 這裡填寫要進行的jQuery的部分
+        })
+    </script>
+    <!-- -->
+    <!-- -->
+    <!-- -->
+    <!-- 以下則是載入 Tensorflow.js-->
+    <!-- 相關 api 可以查詢 https://js.tensorflow.org/api/latest/ -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+    <!-- 以下則是載入 tfjs-vis-->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis/dist/tfjs-vis.umd.min.js"></script>
+    <!-- -->
+    <!-- -->
+    <!-- -->
+</head>
+<body>
+    <script>
+        const nations = ['美國','巴西','墨西哥','印度','英國'];
+        const deaths = [56.2, 35.3, 20.9, 17.0, 12.7];
+        // 製作成對的物件，注意這邊長條圖使用的是index與value
+        let dt_bar = [];
+        for (let i = 0; i < nations.length; i++) {
+            let obj_bar = {};
+            obj_bar.index = nations[i];
+            obj_bar.value = deaths[i];
+            dt_bar.push(obj_bar);
+        }
+        // 接下來畫長條圖的做法其實差不多
+        // 參數中的 container
+        const chart_ct = {
+            name: '武漢肺炎死亡人數',
+            tab: '這是個散佈圖'
+        };
+        // 參數中的 opts
+        const chart_opts = {
+            xLabel: '國家',
+            yLabel: '萬人死亡',
+            yAxisDomain: [0, 60],
+            color:['green', 'blue', 'red', 'yellow', 'purple'],
+            height: 300,
+            width: 400
+        };
+        tfvis.render.barchart(
+            container = chart_ct,
+            data = dt_bar,
+            opts = chart_opts
+        );
+    </script>
+</body>
+</html>

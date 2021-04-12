@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>Tensorflow.js 練習張量的運算</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+        div {
+            font-weight: normal;
+        }
+
+        span.bold {
+            font-weight: bold;
+        }
+
+        span.underline {
+            text-decoration: underline solid;
+            text-decoration-color: gray;
+        }
+
+        span.blue {
+            color: blue;
+        }
+    </style>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <!-- -->
+    <!-- -->
+    <!-- -->
+    <!-- 以下則是載入jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        $(document).ready(function () {
+            // 這裡填寫要進行的jQuery的部分
+        })
+    </script>
+    <!-- -->
+    <!-- -->
+    <!-- -->
+    <!-- 以下則是載入 Tensorflow.js-->
+    <!-- 相關 api 可以查詢 https://js.tensorflow.org/api/latest/ -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+    <script>
+        function showProp(x_data) {
+            let x_prop = Object.getOwnPropertyNames(x_data);
+            document.write("<span class=\"underline\">");
+            document.write("張量值 " + "<span class=\"blue\">" + x_data + "</span>" + "；<br>");
+            for (obj of x_prop) {
+                document.write("屬性 " + "<span class=\"blue\">" + obj + "</span>" + " 的值為 ");
+                document.write("<span class=\"blue\">" + x_data[obj] + "</span>" + "；<br>");
+            }
+            document.write("</span>");
+        }
+    </script>
+    <!-- -->
+    <!-- -->
+    <!-- -->
+</head>
+
+<body>
+    <h2>練習張量的運算</h2>
+    <hr>
+    <script>
+        // 建立連續均勻分布的隨機值張量
+        // 使用方式 tf.randomUniform(形狀矩陣, 最小值, 最大值, 資料型別)
+        // 相關說明在 https://js.tensorflow.org/api/latest/?hl=zh-tw#randomUniform
+        const a_rndUni = tf.randomUniform(shape = [3,3], minval = 1, maxval = 5, dtype = 'int32');
+        document.write("<div><p><span class=\"bold\">");
+        document.write("建立一個連續均勻分布的隨機值張量 a<br></span>");
+        document.write("張量 a 為 " + "<span class=\"blue\">" + a_rndUni + "</span>" + "；<br>");
+        document.write("</p></div><hr>");
+        const b_rndUni = tf.randomUniform(shape = [3,3], minval = 1, maxval = 5, dtype = 'int32');
+        document.write("<div><p><span class=\"bold\">");
+        document.write("建立一個連續均勻分布的隨機值張量 b<br></span>");
+        document.write("張量 b 為 " + "<span class=\"blue\">" + b_rndUni + "</span>" + "；<br>");
+        document.write("</p></div><hr>");
+        document.write("可以進行兩張量的相加 " + "<span class=\"blue\">" + tf.add(a_rndUni, b_rndUni) + "</span>" + "；<br>");
+        document.write("<hr>");
+        document.write("也可以進行兩張量的點積 " + "<span class=\"blue\">" + tf.matMul(a_rndUni, b_rndUni) + "</span>" + "；<br>");
+        document.write("<hr>");
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>練習使用tfjs-vis畫折線圖</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+    </style>
+    <!-- 如果需要查看其他常用的CDN連結，下方是Google的 -->
+    <!-- https://developers.google.com/speed/libraries -->
+    <!-- -->
+    <!-- -->
+    <!-- -->
+    <!-- 以下則是載入jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 載入jQuery之後就可以開始使用 -->
+    <!-- 格式是 $(document).ready(要處理的事件) -->
+    <script>
+        $(document).ready(function () {
+            // 這裡填寫要進行的jQuery的部分
+        })
+    </script>
+    <!-- -->
+    <!-- -->
+    <!-- -->
+    <!-- 以下則是載入 Tensorflow.js-->
+    <!-- 相關 api 可以查詢 https://js.tensorflow.org/api/latest/ -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+    <!-- 以下則是載入 tfjs-vis-->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis/dist/tfjs-vis.umd.min.js"></script>
+    <!-- -->
+    <!-- -->
+    <!-- -->
+</head>
+
+<body>
+    <h2>練習使用tfjs-vis畫折線圖</h2>
+    <hr>
+    <script>
+        async function draw_line() {
+            // 先手動輸入一組資料
+            let dt1 = [
+                { x: 1, y: 10 },
+                { x: 3, y: 15 },
+                { x: 5, y: 8 },
+                { x: 7, y: 20 },
+                { x: 9, y: 17 }
+            ];
+            // 手動輸入第二組資料
+            let dt2 = [
+                { x: 1.3, y: 28 },
+                { x: 3.5, y: 6 },
+                { x: 5.7, y: 24 },
+                { x: 7.9, y: 9 },
+                { x: 9.1, y: 19 }
+            ];
+            // 手動輸入第三組資料
+            let dt3 = [
+                { x: 0.9, y: 8 },
+                { x: 2.7, y: 18 },
+                { x: 4.5, y: 12 },
+                { x: 6.3, y: 16 },
+                { x: 8.1, y: 10 }
+            ];
+            // 參數中的 container
+            const chart_ct = {
+                name: '這個是氣溫',
+                tab: '這是個折線圖'
+            };
+            // 參數中的 data
+            const chart_dt = {
+                values: [dt1, dt2, dt3],
+                series: ['客廳', '廁所', '浴室']
+            };
+            // 參數中的 opts
+            const chart_opts = {
+                xLabel: '日數',
+                yLabel: '溫度為攝氏',
+                xAxisDomain: [0, 10],
+                yAxisDomain: [5, 30],
+                seriesColors:['blue', 'green', 'red'],
+                height: 300,
+                width: 400
+            };
+            tfvis.render.linechart(
+                container = chart_ct,
+                data = chart_dt,
+                opts = chart_opts
+            );
+        }
+        draw_line();
+    </script>
+</body>
+
+</html>
