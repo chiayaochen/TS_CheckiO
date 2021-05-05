@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>這是個重要的大型練習</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+    </style>
+    <!-- 載入 Tensorflow.js-->
+    <!-- 相關 api 可以查詢 https://js.tensorflow.org/api/latest/ -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+    <!-- 以下則是載入 tfjs-vis-->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis/dist/tfjs-vis.umd.min.js"></script>
+    <!-- -->
+    <!-- -->
+    <!-- -->
+</head>
+
+<body>
+    <script>
+        // 相關練習說明可以參考
+        // https://codelabs.developers.google.com/codelabs/tfjs-training-regression/index.html?hl=zh-tw#2
+        // https://www.tensorflow.org/js/tutorials/training/linear_regression?hl=zh-tw
+        // 
+        // 首先先建立一個非同步的函數來擷取資料
+        // 非同步的函數可以讓這個函數不與其他函數在執行順序上產生關聯，也就是一起開始的意思，而非依序開始
+        async function getData() {
+            // 資料所在的網址
+            const DataURL = 'https://storage.googleapis.com/tfjs-tutorials/carsData.json';
+            // 然後這邊會使用 fetch 取得 訓練資料
+            // 相關說明可以參考
+            // https://developer.mozilla.org/zh-TW/docs/Web/API/Fetch_API/Using_Fetch
+            // https://developer.mozilla.org/zh-TW/docs/Web/API/Fetch_API/Using_Fetch#body
+            const carsDataResponse = await fetch(DataURL);
+            // 在函數前面使用 await 關鍵字，
+            // 會讓一個 await 執行完之後，再執行下一個 await，
+            // 如此調控執行順序
+            // 
+            // 前面的 fetch 只是發送請求，但回傳的東西才是我們要處理的
+            const carsDataJSON = await carsDataResponse.json();
+            // 然後利用 map 把單純只有 油耗 與 馬力 的資料整理出來
+            // 並且利用 filter 把 沒有填到油耗馬力 的那幾筆資料去掉
+            const dt_cleaned = carsDataJSON.map(
+                eachCar => (
+                    {
+                        mpg: eachCar.Miles_per_Gallon,
+                        HP: eachCar.Horsepower
+                    }
+                )
+            ).filter(
+                everyCar => (
+                    (everyCar.mpg != null) && (everyCar.HP != null)
+                )
+            );
+            return dt_cleaned
+        }
+        // 然後建立一個繪製資料散佈圖的函數
+        async function plotData() {
+            const dt = await getData();
+            const dt_xy = dt.map(
+                eachOne => (
+                    {
+                        x: eachOne.HP,
+                        y: eachOne.mpg
+                    }
+                )
+            );
+            await tfvis.render.scatterplot(
+                container = {
+                    name: '原始資料散佈圖',
+                    tab: '第一張圖'
+                },
+                data = {
+                    values: [dt_xy],
+                    series: ['馬力與油耗原始資料']
+                },
+                opts = {
+                    xLabel: '馬力',
+                    yLabel: '油耗',
+                    // xAxisDomain: [0, 10],
+                    // yAxisDomain: [60, 100],
+                    seriesColors: ['#0000FF'],
+                    width: 800,
+                    height: 300
+                }
+            );
+        }
+        // 然後讓每次載入網頁的時候都自動顯示出來
+        document.addEventListener('DOMContentLoaded', plotData);
+        // 
+        // 
+        // 
+        //  接下來建立建構模型的函數
+        function createModel() {
+            // 宣告一個模型，然後一層一層加進去
+            const model = tf.sequential();
+            // 輸入層
+            model.add(tf.layers.dense({
+                inputShape: [1],
+                units: 1,
+                useBias: true
+            }));
+            // 輸出層
+            model.add(tf.layers.dense({
+                units: 1,
+                useBias: true
+            }));
+            return model;
+        }
+        const model_1 = createModel();
+        // 展示模型概述
+        tfvis.show.modelSummary({ name: '模型概述', tab:'模型' }, model_1);
+    </script>
+</body>
+
+</html>

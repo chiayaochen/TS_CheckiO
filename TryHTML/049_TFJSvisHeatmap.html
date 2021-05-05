@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>練習繪製熱力圖</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+    </style>
+    <!-- 以下則是載入 Tensorflow.js-->
+    <!-- 相關 api 可以查詢 https://js.tensorflow.org/api/latest/ -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+    <!-- 以下則是載入 tfjs-vis-->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis/dist/tfjs-vis.umd.min.js"></script>
+    <!-- -->
+</head>
+
+<body>
+    <script>
+        const dt_tf = tf.randomUniform(shape = [3, 3], minval = 1, maxval = 100, dtype = 'int32');
+        tfvis.render.heatmap(
+            container = {
+                name: '這是三乘三格的整數亂數',
+                tab: '這是熱力圖示範'
+            },
+            data = {
+                values: dt_tf,
+                xTickLabels: ['A', 'B', 'C'],
+                yTickLabels: ['P', 'Q', 'R']
+            },
+            opts = {
+                xLabel: '就ABC好了',
+                yLabel: '那就PQR啦',
+                width: 400,
+                height: 300
+            }
+        );
+    </script>
+</body>
+
+</html>
