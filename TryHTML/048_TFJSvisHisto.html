@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>練習繪製直方圖</title>
+    <!-- 這邊設定CSS樣式 -->
+    <style>
+        /* 這邊是填寫要設定的CSS樣式 */
+    </style>
+    <!-- 以下則是載入 Tensorflow.js-->
+    <!-- 相關 api 可以查詢 https://js.tensorflow.org/api/latest/ -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+    <!-- 以下則是載入 tfjs-vis-->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis/dist/tfjs-vis.umd.min.js"></script>
+    <!-- -->
+    <!-- -->
+    <!-- -->
+</head>
+
+<body>
+    <script>
+        // 自產一個 10000 個整數亂數值
+        const data_tf = tf.randomNormal(
+            shape = [10000],
+            mean = 1000,
+            stdDev = 50,
+            dtype = 'int32'
+        );
+        // 把張量轉成數列
+        let data_num = data_tf.dataSync();
+        tfvis.render.histogram(
+            container = {
+                name: '這裡有一萬個整數',
+                tab: '這是一個直方圖'
+            },
+            data = data_num,
+            opts = {
+                xLabel: '數值分布',
+                yLabel: '統計個數',
+                // 顯示簡單的統計
+                stats: true,
+                // 設定分割的最大區間數
+                maxBins: 100,
+                color: '#00FF00',
+                width: 500,
+                height: 300
+            }
+        );
+    </script>
+</body>
+
+</html>
