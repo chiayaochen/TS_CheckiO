@@ -120,8 +120,11 @@
         async function trainModel(mdl, ipts, lbls) {
             // 編譯模型
             mdl.compile({
+                // 優化器
                 optimizer: tf.train.adam(),
+                // 損失函數
                 loss: 'meanSquaredError',
+                // 評估標準
                 metrics: ['mse']
             });
             const batchSize = 32;
@@ -148,6 +151,33 @@
                 }
             );
         }
+        // 建立一個函式來進行預測看看
+        function testModel(model, dtOrigin, dtTensor) {
+            // 先取得之前的最大值最小值以用於還原標準化之後的數值
+            const { inputMax, inputMin, labelMax, labelMin } = dtTensor;
+            // 製造一組平均分布的馬力與其預測的油耗
+            // 利用 tf.tidy(()=>{}) 以去除不需要的中間產物
+            const [HorsePtest, mpgPreds] = tf.tidy(() => {
+                // 製造 500 個 平均分布於 0到1 之間的數字
+                // 以下先回傳一個一維的張量
+                const pseudoX = tf.linspace(
+                    start = 0,
+                    stop = 1,
+                    num = 500
+                );
+                // 然後利用訓練好的模型得到預測值
+                // 要丟進模型的東西必須是個二維向量所以要再變形一下
+                const predY = model.predict(pseudoX.reshape([500, 1]));
+                // 利用上面的最大值最小值把數字還原成標準化前的樣子
+                const X_HorseP = pseudoX.mul(inputMax.sub(inputMin)).add(inputMin);
+                cosnt Y_mpg = predY.mul(labelMax.sub(labelMin)).add(labelMin);
+                return [X_HorseP.dataSync(), Y_mpg.dataSync()];
+            });
+            // 接著要把上述的馬力與預測油耗重新包裝為預測用的點座標
+            const XYpred = Array.from(HorsePtest).map((v, i) => {
+                return {x:v, y:mpgPreds[i]}
+            });
+        }
         // 以下是實際執行的主函數
         async function runWhenLoaded() {
             // 載入資料
@@ -157,7 +187,7 @@
             await tfvis.render.scatterplot(
                 container = {
                     name: '原始資料散佈圖',
-                    tab: '第一張圖'
+                    tab: '初步資料'
                 },
                 data = {
                     values: [dt_xy],
@@ -180,8 +210,7 @@
             // 轉換資料為張量
             const dataTf = convertToTensor(dataGet);
             // 開始訓練模型
-            const tfInputs = dataTf.tfInputs;
-            const tfLabels = dataTf.tfLabels;
+            const { tfInputs, tfLabels } = dataTf;
             await trainModel(model_1, tfInputs, tfLabels);
             console.log('訓練完成了唷');
         }
