@@ -170,7 +170,7 @@
                 const predY = model.predict(pseudoX.reshape([500, 1]));
                 // 利用上面的最大值最小值把數字還原成標準化前的樣子
                 const X_HorseP = pseudoX.mul(inputMax.sub(inputMin)).add(inputMin);
-                cosnt Y_mpg = predY.mul(labelMax.sub(labelMin)).add(labelMin);
+                const Y_mpg = predY.mul(labelMax.sub(labelMin)).add(labelMin);
                 return [X_HorseP.dataSync(), Y_mpg.dataSync()];
             });
             // 接著要把上述的馬力與預測油耗重新包裝為預測用的點座標
