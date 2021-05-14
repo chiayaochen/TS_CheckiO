@@ -56,9 +56,14 @@
             );
             return dt_cleaned
         }
+
+        const dataGet = getData();
+        for (obj in dataGet){
+            console.log(obj.HP);
+        }
+
         // 然後建立一個繪製資料散佈圖的函數
-        async function plotData() {
-            const dt = await getData();
+        async function plotData(dt) {
             const dt_xy = dt.map(
                 eachOne => (
                     {
@@ -88,7 +93,7 @@
             );
         }
         // 然後讓每次載入網頁的時候都自動顯示出來
-        document.addEventListener('DOMContentLoaded', plotData);
+        document.addEventListener('DOMContentLoaded', plotData(dataGet));
         // 
         // 
         // 
@@ -111,7 +116,87 @@
         }
         const model_1 = createModel();
         // 展示模型概述
-        tfvis.show.modelSummary({ name: '模型概述', tab:'模型' }, model_1);
+        tfvis.show.modelSummary({ name: '模型概述', tab: '模型' }, model_1);
+        // 
+        // 
+        // 
+        // 建立一個函式，練習怎麼樣把資料轉換成為張量
+        async function convertToTensor() {
+            const data = await getData;
+            // 以下利用了 tf.tidy()
+            // 放在 tf.tidy() 裡面的中間產物的張量，都會被自動清除，以免浪費記憶體
+            return tf.tidy(() => {
+                // 第一步，先把資料打亂
+                // 這邊利用的是 tf.util.shuffle()
+                // 這會用到 Fisher–Yates shuffle 洗牌演算法
+                tf.util.shuffle(data);
+                // 
+                // 第二步，把資料轉換為輸入的張量與答案的張量
+                const inputs = data.map(obj => obj.HP);
+                const labels = data.map(obj => obj.mpg);
+                const inputTensor = tf.tensor2d(
+                    values = inputs,
+                    shape = [inputs.length, 1]
+                );
+                const labelTensor = tf.tensor2d(
+                    values = labels,
+                    shape = [labels.length, 1]
+                );
+                // 
+                // 第三步，將資料標準化
+                const inputMax = inputTensor.max();
+                const inputMin = inputTensor.min();
+                const labelMax = labelTensor.max();
+                const labelMin = labelTensor.min();
+                const normInputs = inputTensor.sub(inputMin).div(inputMax.sub(inputMin));
+                const normLabels = labelTensor.sub(labelMin).div(labelMax.sub(labelMin));
+                // 
+                // 然後回傳我們想要的那些東西
+                return {
+                    tfInputs: normInputs,
+                    tfLabels: normLabels,
+                    inputMax,
+                    inputMin,
+                    labelMax,
+                    labelMin
+                }
+            });
+        }
+        // 
+        // 
+        // 
+        // 建立一個函式來訓練模型
+        async function trainModel(mdl, ipts, lbls) {
+            // 編譯模型
+            mdl.compile({
+                optimizer: tf.train.adam(),
+                loss: tf.losses.meanSquaredError(),
+                metrics: ['mse']
+            });
+            const batchSize = 32;
+            const epochs = 100;
+            // 然後回傳模型的訓練
+            return await mdl.fit(
+                x = ipts,
+                y = lbls,
+                arg = {
+                    batchSize: batchSize,
+                    epochs: epochs,
+                    shuffle: true,
+                    callbacks: tfvis.show.fitCallbacks(
+                        container = {
+                            name: 'Training performance',
+                            tab: '模型訓練'
+                        },
+                        metrics = ['loss', 'mse'],
+                        opts = {
+                            height: 200,
+                            callbacks: ['onEpochEnd']
+                        }
+                    )
+                }
+            );
+        }
     </script>
 </body>
 
